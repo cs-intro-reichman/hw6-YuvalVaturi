@@ -146,9 +146,10 @@ public class Runigram {
 				scaIMG[i][j] = image[(int) (i * rowRatio)][(int) (j * colRatio)];
 			}
 		}
-
 		return scaIMG;
 	}
+
+	
 
 	/**
 	 * Computes and returns a blended color which is a linear combination of the two
@@ -216,6 +217,8 @@ caller of the morph function, as we now turn to discuss.
 		
 		for (int times = 0; times <= n; times++){
 			double alpha = (double) (n - times) / n;
+			//double alpha = (double) times / n;
+
 			Color[][] morphedImage = new Color[source.length][source[0].length];
 			for (int i = 0; i < source.length; i++) {
 				for (int j = 0; j < source[0].length; j++) {
