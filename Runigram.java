@@ -212,24 +212,26 @@ the intermediate result, and the StdDraw.pause function to pause for about 500 m
 Implement and test the morph function. Note: The canvas for this morphing operation is set by the
 caller of the morph function, as we now turn to discuss.
 	 */
+	
 	public static void morph(Color[][] source, Color[][] target, int n) {
 		Color[][] scaledTarget = scaled(target, source.length, source[0].length);
+		Color[][] morphedImage = new Color[source.length][source[0].length];
+		Runigram.setCanvas(source);
 		
-		for (int times = 0; times <= n; times++){
-			double alpha = (double) (n - times) / n;
-			//double alpha = (double) times / n;
+		for (int i = n; i >= 0; i--) {
+			double alpha = (double) i / n;
+			// System.out.println(alpha);
 
-			Color[][] morphedImage = new Color[source.length][source[0].length];
-			for (int i = 0; i < source.length; i++) {
-				for (int j = 0; j < source[0].length; j++) {
-					morphedImage[i][j] = blend(source[i][j],scaledTarget[i][j], alpha );
-				}
-			}
-			display(morphedImage);
-			StdDraw.pause(500);
-		}
+			morphedImage = blend(source, scaledTarget, alpha);
+
+			Runigram.display(morphedImage);
+			StdDraw.pause(500); 
+		}	
 
 	}
+
+
+
 
 	/** Creates a canvas for the given image. */
 	public static void setCanvas(Color[][] image) {
